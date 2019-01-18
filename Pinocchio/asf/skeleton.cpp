@@ -268,7 +268,7 @@ end:
 
 		// compute absolute positions
 		initAbsolutePos();
-		//normalize();
+		normalize();
 
 		// save left and right bones seperatly
 		bonesFat = std::vector<Bone*>(NUM_BONES_IN_ASF_FILE);
@@ -409,17 +409,28 @@ end:
 			else if (z > max[2])
 				max[2] = z;
 		}
+		/*
 		double dmax = 0.;
 		for (int i = 0; i < 3; i++) {
 			double d = max[i] - min[i];
 			if (d > dmax)
 				dmax = d;
 		}
+		double n = dmax;
+		*/
+		auto abs = [](double x) { return x < 0 ? -x : x; };
+		double n = 0.;
+		for (int i = 0; i < 3; i++) {
+			if (max[i] > n)
+				n = max[i];
+			if (abs(min[i]) > n)
+				n = abs(min[i]);
+		}
 
 		for (int i = 0; i < NUM_BONES_IN_ASF_FILE; i++) {
-			m_pBoneList[i].absx /= dmax;
-			m_pBoneList[i].absy /= dmax;
-			m_pBoneList[i].absz /= dmax;
+			m_pBoneList[i].absx /= n;
+			m_pBoneList[i].absy /= n;
+			m_pBoneList[i].absz /= n;
 		}
 	}
 
@@ -800,9 +811,9 @@ end:
 		cout << "Skeleton bones info: " << endl;
 		for (int i=0; i < NUM_BONES_IN_ASF_FILE; i++) {
 			auto b = &(m_pBoneList[i]);
-			cout << b->name << ": " << b->length << " (" <<
-				b->dir[0] << ", " << b->dir[1] << ", " << b->dir[2] << ")" 
-				<< endl <<
+			cout << b->name << ": ";
+			cout << 
+				//b->length << " (" << b->dir[0] << ", " << b->dir[1] << ", " << b->dir[2] << ")"  << endl
 				"(" << b->absx << ", " << b->absy << ", " << b->absz << ")" 
 				<< endl;
 		}

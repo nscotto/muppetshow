@@ -7,9 +7,13 @@ LIBS = -lm -L../Pinocchio/ -lpinocchio -lfltk -lfltk_gl -lGL
 ASFO = posture.o transform.o skeleton.o vector.o
 ASFOBJ = $(foreach x, $(ASFO), ../asf/$(x))
 OBJECTS = demoUI.o MyWindow.o defmesh.o processor.o motion.o filter.o $(ASFOBJ)
+OUT = DemoUI
+
+debug: CCFLAGS += -DDEBUG -g
+debug: OUT = DemoUI.debug
 
 DemoUI: $(OBJECTS)
-	$(CC) $(OBJECTS) $(LIBS) -o DemoUI
+	$(CC) $(OBJECTS) $(LIBS) -o $(OUT)
 
 .cpp.o:
 	$(CC) $(CCFLAGS) $<

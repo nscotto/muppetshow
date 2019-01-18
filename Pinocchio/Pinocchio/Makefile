@@ -7,6 +7,8 @@ OBJECTS = attachment.o discretization.o indexer.o lsqSolver.o mesh.o \
 	graphutils.o intersector.o matrix.o skeleton.o embedding.o \
 	pinocchioApi.o refinement.o quatinterface.o $(ASFOBJ)
 
+debug: CCFLAGS += -DDEBUG -g
+
 libpinocchio.so: $(OBJECTS)
 	$(CC) $(OBJECTS) $(LIBS) -o libpinocchio.so
 

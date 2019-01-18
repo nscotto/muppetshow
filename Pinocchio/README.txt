@@ -122,3 +122,10 @@ The motion reading and retargetting in the DemoUI (defmesh.cpp, filter.cpp,
 and motion.cpp) is also a mess (hard-coded for a specific motion format for
 a specific skeleton--completely unreusable).  Again, anyone who wants to do
 anything serious has their own ways of making transforms from motion data.
+
+---------------------------------
+ASF PARSING
+---------------------------------
+The folder asf contains the asf parser.
+
+skeleton.h	definition of the asf skeleton.

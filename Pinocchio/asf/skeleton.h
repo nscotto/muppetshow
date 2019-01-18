@@ -104,7 +104,7 @@ namespace asf {
 			int numBonesInSkel(Bone bone);
 			int movBonesInSkel(Bone bone);
 
-			// TODO DEBUG
+			// TODO just a debug function, remove when finished
 			void print() const;
 
 

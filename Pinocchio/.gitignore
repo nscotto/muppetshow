@@ -1,0 +1,11 @@
+*
+!.gitignore
+!Makefile
+!asf/
+!Pinocchio/
+!DemoUI/
+!README.txt
+!**/*.h
+!**/*.cpp
+!**/*.hpp
+!**/Makefile
